@@ -8,7 +8,7 @@ import (
 	"strings"
 	"errors"
 	"encoding/base64"
-	//"os"
+	"os"
 )
 
 var (
