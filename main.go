@@ -13,8 +13,8 @@
 package main
 
 import (
-	api "github.build.ge.com/212359746/ecapi"
-	util "github.build.ge.com/212359746/ecutil"
+	api "github.build.ge.com/212359746/wzapi"
+	util "github.build.ge.com/212359746/wzutil"
 	"net/http"
 	"crypto/rsa"
 	"strings"
