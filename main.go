@@ -42,6 +42,7 @@ func main(){
 
 		defer func(){
 			if r:=recover();r!=nil{
+				util.PanicRecovery(r)
 				api.ErrResponse(w, 500, errors.New("internal error"), r.(string))
 			}
 		}()
@@ -91,6 +92,7 @@ func main(){
 
 		defer func(){
 			if r:=recover();r!=nil{
+				util.PanicRecovery(r)
 				api.ErrResponse(w, 500, errors.New("internal error"), r.(string))
 			}
 		}()
