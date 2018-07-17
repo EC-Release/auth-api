@@ -7,7 +7,7 @@
  * with the terms and conditions stipulated in the agreement/contract
  * under which the software has been supplied.
  *
- * author: chia.chang@ge.com
+ * author: apolo.yasuda@ge.com
  */
 
 package main
@@ -26,6 +26,7 @@ import (
 var (
 	PVT_PWD = os.Getenv("EC_PRVT_PWD")
 	PVT_KEY = os.Getenv("EC_PRVT_KEY")
+	EC_CRT = os.Getenv("EC_PUB_KEY")
 	ADMIN_USR = os.Getenv("ADMIN_USR")
 	ADMIN_TKN = os.Getenv("ADMIN_TKN")
 )
@@ -112,20 +113,13 @@ func main(){
 		w.Header().Set("Content-Type", "application/json")
 
 		_opt := r.Header.Get(EC_HTTP_HEADER)
-		
-		crt:=util.NewCert("minota")
-		
-		pk,err:=crt.ParsePvtKey([]byte(PVT_KEY), PVT_PWD)
+				
+		op,err:=encrypt(_opt,[]byte(EC_CRT))
 		if err!=nil{
 			api.ErrResponse(w, 500, err, "")
 			return 
 		}
-
-		op,err:=encrypt(_opt,pk,crt)
-		if err!=nil{
-			api.ErrResponse(w, 500, err, "")
-			return 
-		}
+		
 		op=base64.StdEncoding.EncodeToString([]byte(op))
 		util.DbgLog(op)
 		
@@ -152,13 +146,14 @@ func decrypt(d string, pk *rsa.PrivateKey, crt *util.Cert) (string, error){
 	return string(_s),nil
 }
 
-func encrypt(d string,pk *rsa.PrivateKey, crt *util.Cert) (string, error){
+func encrypt(d string, pbk []byte) (string, error){
 
-	_s:=crt.Encrypt(strings.TrimSpace(d), &pk.PublicKey)
+	crt:=util.NewCert("minota")
+
+	_s:=crt.EncryptV2(strings.TrimSpace(d), pbk)
 	if _s==nil{
 		return "",errors.New("encrypt failed.")
 	}
 	
 	return string(_s),nil
-
 }
