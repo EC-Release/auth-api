@@ -37,6 +37,7 @@ const (
 )
 func main(){
 
+	util.Branding("/.ec","ec-plugin","ec-config","EC")
 	util.Init("agent",true)
 
 	http.HandleFunc("/decrypt", func(w http.ResponseWriter, r *http.Request){
