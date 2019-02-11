@@ -33,11 +33,10 @@ var (
 
 const (
 	EC_HTTP_HEADER = "ec-options"
-
 )
 func main(){
 
-	util.Branding("/.ec","ec-plugin","ec-config","EC")
+	util.Branding("/.ec","ec-plugin","ec-config","https://ca-not-in-use.com","EC")
 	util.Init("agent",true)
 
 	http.HandleFunc("/decrypt", func(w http.ResponseWriter, r *http.Request){
@@ -64,7 +63,11 @@ func main(){
 
 		_opt := r.Header.Get(EC_HTTP_HEADER)
 
-		crt:=util.NewCert("minota")
+		crt,err:=util.NewCert("minota")
+		if err!=nil{
+			api.ErrResponse(w, 500, err, "")
+			return	
+		}
 		
 		pk,err:=crt.ParsePvtKey([]byte(PVT_KEY), PVT_PWD)
 		if err!=nil{
@@ -149,8 +152,11 @@ func decrypt(d string, pk *rsa.PrivateKey, crt *util.Cert) (string, error){
 
 func encrypt(d string, pbk []byte) (string, error){
 
-	crt:=util.NewCert("minota")
-
+	crt,err:=util.NewCert("minota")
+	if err==nil{
+		return "",err
+	}
+	
 	_s:=crt.EncryptV2(strings.TrimSpace(d), pbk)
 	if _s==nil{
 		return "",errors.New("encrypt failed.")
