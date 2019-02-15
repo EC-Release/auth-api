@@ -32,11 +32,28 @@ var (
 )
 
 const (
+	EC_LOGO = `
+           ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄                                            
+          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░
+          ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀   
+          ▐░▌          ▐░▌            
+          ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌            
+          ▐░░░░░░░░░░░▌▐░▌            
+          ▐░█▀▀▀▀▀▀▀▀▀ ▐░▌            
+          ▐░▌          ▐░▌            
+          ▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄   
+          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌  
+           ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  @Digital Connect 
+`
+	COPY_RIGHT = "Digital Connect,  @GE Corporate"
+	ISSUE_TRACKER = "https://github.com/Enterprise-connect/ec-x-sdk/issues"
+	TC_HEADER = "X-Thread-Connect"
+	XCALR_URL = "https://x-thread-connect.run.pcs.aws-usw02-dev.ice.predix.io"
 	EC_HTTP_HEADER = "ec-options"
 )
 func main(){
 
-	util.Branding("/.ec","ec-plugin","ec-config","https://ca-not-in-use.com","EC")
+	util.Branding("/.ec","ec-plugin","ec-config",TC_HEADER,"EC",EC_LOGO,COPY_RIGHT,XCALR_URL,ISSUE_TRACKER)
 	util.Init("agent",true)
 
 	http.HandleFunc("/decrypt", func(w http.ResponseWriter, r *http.Request){
