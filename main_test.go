@@ -7,7 +7,7 @@
  * with the terms and conditions stipulated in the agreement/contract
  * under which the software has been supplied.
  *
- * author: chia.chang@ge.com
+ * author: apolo.yasuda@ge.com
  */
 
 package main
@@ -18,19 +18,6 @@ import (
 
 	util "github.build.ge.com/212359746/wzutil"
 )
-
-func Test_main(t *testing.T) {
-	tests := []struct {
-		name string
-	}{
-	// TODO: Add test cases.
-	}
-	for range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			main()
-		})
-	}
-}
 
 func Test_decrypt(t *testing.T) {
 	type args struct {
@@ -44,7 +31,7 @@ func Test_decrypt(t *testing.T) {
 		want    string
 		wantErr bool
 	}{
-	// TODO: Add test cases.
+		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -63,8 +50,7 @@ func Test_decrypt(t *testing.T) {
 func Test_encrypt(t *testing.T) {
 	type args struct {
 		d   string
-		pk  *rsa.PrivateKey
-		crt *util.Cert
+		pbk []byte
 	}
 	tests := []struct {
 		name    string
@@ -72,11 +58,11 @@ func Test_encrypt(t *testing.T) {
 		want    string
 		wantErr bool
 	}{
-	// TODO: Add test cases.
+		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := encrypt(tt.args.d, tt.args.pk, tt.args.crt)
+			got, err := encrypt(tt.args.d, tt.args.pbk)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("encrypt() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -84,6 +70,19 @@ func Test_encrypt(t *testing.T) {
 			if got != tt.want {
 				t.Errorf("encrypt() = %v, want %v", got, tt.want)
 			}
+		})
+	}
+}
+
+func Test_main(t *testing.T) {
+	tests := []struct {
+		name string
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			main()
 		})
 	}
 }
