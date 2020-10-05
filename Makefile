@@ -25,7 +25,6 @@ authapi-deploy:
 authapi-build:
 	@echo creating artifact..
 	@go build -o ./agent .
-	@./agent -ver
 
 authapi-sast:
 	@echo begining SAST scanning..
