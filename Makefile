@@ -14,10 +14,13 @@ ecauthapi=authapi
 
 .DEFAULT_GOAL: $(ecauthapi)
 
-$(ecauthapi): authapi-sast authapi-lint authapi-test authapi-build
+$(ecauthapi): authapi-sast authapi-lint authapi-test authapi-build authapi-deploy
 
 pre-install:
 	@ls -la
+
+authapi-deploy:
+	@python authapi-ci.py
 
 authapi-build:
 	@echo creating artifact..
