@@ -14,7 +14,7 @@ ecauthapi=authapi
 
 .DEFAULT_GOAL: $(ecauthapi)
 
-$(ecauthapi): authapi-lint authapi-test authapi-build authapi-deploy
+$(ecauthapi): authapi-lint authapi-test authapi-build
 
 pre-install:
 	@ls -la
