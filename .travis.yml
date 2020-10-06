@@ -1,0 +1,22 @@
+language: minimal
+if: head_branch =~ ^v1beta_update$ OR branch = v1beta
+
+services:
+  - docker:19.03.1-dind  
+
+script:
+   - wget https://github.com/EC-Release/sdk/archive/${AGENT_LIB}.tar.gz
+   - mkdir ${AGENT_LIB} && tar -xzvf ${AGENT_LIB}.tar.gz --strip 1 -C ${AGENT_LIB}
+   - rm -Rf pkg && mv ${AGENT_LIB}/lib/go/pkg pkg
+   - ls -al && echo ${CI_PROJECT_DIR} && ls -al pkg
+   - chmod 755 dind.sh
+   - docker run --network host -e CI_COMMIT_BRANCH=${CI_COMMIT_BRANCH} -e API_BUILD_REV=${TRAVIS_BUILD_NUMBER} -e CI_DEFAULT_BRANCH=${CI_DEFAULT_BRANCH} -e GITHUB_TKN=${GITHUB_TKN} -e CI_JOB_ID=${CI_JOB_ID} -v $(pwd):/build enterpriseconnect/build:v1beta
+
+notifications:  
+  email:  
+    recipients:  
+    - ec-research@ge.com
+    - gayatri.tagade@ge.com
+    - apolo.yasuda@ge.com
+    on_success: always  
+    on_failure: always
