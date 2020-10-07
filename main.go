@@ -106,8 +106,10 @@ func main(){
 		}
 
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(`{"data":"`+base64.StdEncoding.EncodeToString([]byte(pq))+`"}`))
-
+		_,err = w.Write([]byte(`{"data":"`+base64.StdEncoding.EncodeToString([]byte(pq))+`"}`))
+		if err != nil {
+			panic(err)
+		}
 	})
 	
 	http.HandleFunc("/encrypt", func(w http.ResponseWriter, r *http.Request){
@@ -145,8 +147,10 @@ func main(){
 		util.DbgLog(op)
 		
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(`{"data":"`+op+`","test":"`+PVT_PWD+`"}`))
-
+		_, err = w.Write([]byte(`{"data":"`+op+`","test":"`+PVT_PWD+`"}`))
+		if err != nil {
+			panic(err)
+		}
 	})
 
 	util.InfoLog("decrypt api is up and running.")
