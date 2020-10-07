@@ -1,4 +1,8 @@
 language: minimal
+
+python:
+  - 3.6
+  
 if: head_branch =~ ^v1beta_update$ OR branch = v1beta
 
 services:
