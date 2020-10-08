@@ -59,7 +59,7 @@ def main():
 
     #os.system("git tag {}".format(""))
     print("update the artifacts in auth-api..")
-    os.system("cd /{}; git tag {}.auth-api.{}; git push -f origin {} --tags".format(BINARY,DEPLOY_BRANCH,WUI_BUILD_REV,DEPLOY_BRANCH))
+    os.system("cd /{}; git tag {}.auth-api.{}; git push -f origin {} --tags".format(BINARY,DEPLOY_BRANCH,API_BUILD_REV,DEPLOY_BRANCH))
 
     return
 
