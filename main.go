@@ -13,8 +13,8 @@
 package main
 
 import (
-	api "github.build.ge.com/212359746/wzapi"
-	util "github.build.ge.com/212359746/wzutil"
+	api "github.com/wzlib/wzapi"
+	util "github.com/wzlib/wzutil"
 	"net/http"
 	"crypto/rsa"
 	"strings"
