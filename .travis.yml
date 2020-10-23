@@ -6,7 +6,7 @@ python:
 if: head_branch =~ ^v1beta_update$ OR branch = v1beta
 
 services:
-  - docker:19.03.1-dind  
+  - docker 
 
 script:
    - wget https://github.com/EC-Release/sdk/archive/${AGENT_LIB}.tar.gz
@@ -14,7 +14,7 @@ script:
    - rm -Rf pkg && mv ${AGENT_LIB}/lib/go/pkg pkg
    - ls -al && echo ${CI_PROJECT_DIR} && ls -al pkg
    - chmod 755 dind.sh
-   - docker run --network host -e CI_COMMIT_BRANCH=${TRAVIS_BRANCH} -e API_BUILD_REV=${TRAVIS_BUILD_NUMBER} -e CI_DEFAULT_BRANCH=${CI_DEFAULT_BRANCH} -e GITHUB_TKN=${GITHUB_TKN} -e CI_JOB_ID=${CI_JOB_ID} -v $(pwd):/build enterpriseconnect/build:v1beta
+   - docker run --network host -e CI_COMMIT_BRANCH=${TRAVIS_BRANCH} -e API_BUILD_REV=${TRAVIS_BUILD_NUMBER} -e CI_DEFAULT_BRANCH=v1beta -e GITHUB_TKN=${GITHUB_TKN} -e CI_JOB_ID=${CI_JOB_ID} -v $(pwd):/build enterpriseconnect/build:v1beta
 
 notifications:  
   email:  
