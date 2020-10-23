@@ -12,16 +12,31 @@
  * author: apolo.yasuda@ge.com
  */
 
-package wzplugin
+package wzcore
 import (
-	"os/exec"
-	"bytes"
+	"gopkg.in/cheggaaa/pb.v1"
+	"fmt"
+	"strconv"
+	"errors"
 	"strings"
-	util "github.build.ge.com/212359746/wzutil"
-	"gopkg.in/yaml.v2"
+	"time"
+	"os/signal"
+	"os"
+	"sync"
+	"bytes"
+	model "github.com/wzlib/wzschema"
+	"fmt"
+	"io"
 	"encoding/base64"
-	"net/http/httputil"
-	"net/url"
+	"encoding/json"
+	"bytes"
 	"net/http"
+	"net"
+	//"time"
+	"github.com/gorilla/websocket"
+	config "github.com/wzlib/wzconf"
+	api "github.com/wzlib/wzapi"
+	util "github.com/wzlib/wzutil"
 
+	"net/http/pprof"
 )

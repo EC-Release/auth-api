@@ -12,42 +12,16 @@
  * author: apolo.yasuda@ge.com
  */
 
-package wzutil
+package wzplugin
 import (
-	"github.com/pborman/uuid"
-	"io"
-	"math/big"
-	"errors"
-	"net"
-	"log"
-	"github.com/fatih/color"
-
-	"encoding/base64"
-	"strconv"
-	"reflect"
-	"math/rand"
-	"net/mail"
-	
-	"github.build.ge.com/212359746/wzschema"
-
-	"io/ioutil"
-	"net/url"
+	"os/exec"
 	"bytes"
-	"net/http"
-	"encoding/json"
-	"encoding/pem"
-	"crypto/rsa"
-	"crypto/rand"
 	"strings"
-	"os"
-	"fmt"
-	"bufio"
-	"crypto/x509"
-	"crypto/x509/pkix"
-	"time"
-	"crypto/aes"
-	"crypto/cipher"
-	"encoding/hex"
-	"crypto/sha256"
-	"crypto"
+	util "github.com/wzlib/wzutil"
+	"gopkg.in/yaml.v2"
+	"encoding/base64"
+	"net/http/httputil"
+	"net/url"
+	"net/http"
+
 )
