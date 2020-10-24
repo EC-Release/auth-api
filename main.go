@@ -25,8 +25,8 @@ import (
 
 var (
 	PVT_PWD = os.Getenv("EC_PRVT_PWD")
-	PVT_KEY = ./service.key
-	EC_CRT = ./service.crt
+	PVT_KEY = "./service.key"
+	EC_CRT = "./service.crt"
 	ADMIN_USR = os.Getenv("ADMIN_USR")
 	ADMIN_TKN = os.Getenv("ADMIN_TKN")
 )
