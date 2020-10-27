@@ -25,8 +25,8 @@ import (
 
 var (
 	PVT_PWD = os.Getenv("EC_PRVT_PWD")
-	PVT_KEY = os.Getenv("EC_PRVT_KEY")
-	EC_CRT = os.Getenv("EC_PUB_KEY")
+	PVT_KEY = "./service.key"
+	EC_CRT = "./service.crt"
 	ADMIN_USR = os.Getenv("ADMIN_USR")
 	ADMIN_TKN = os.Getenv("ADMIN_TKN")
 )
@@ -86,7 +86,13 @@ func main(){
 			return	
 		}
 		
-		pk,err:=crt.ParsePvtKey([]byte(PVT_KEY), PVT_PWD)
+		pkey,err:=util.ReadFile(PVT_KEY)
+		if err!=nil {
+			api.ErrResponse(w, 500, err, "")
+			return
+		}
+		
+		pk,err:=crt.ParsePvtKey(pkey, PVT_PWD)
 		if err!=nil{
 			api.ErrResponse(w, 500, err, "")
 			return
@@ -136,8 +142,14 @@ func main(){
 		w.Header().Set("Content-Type", "application/json")
 
 		_opt := r.Header.Get(EC_HTTP_HEADER)
-				
-		op,err:=encrypt(_opt,[]byte(EC_CRT))
+		
+		pbk,err:=util.ReadFile(EC_CRT)
+		if err!=nil {
+			api.ErrResponse(w, 500, err, "")
+			return
+		}
+		
+		op,err:=encrypt(_opt,pbk)
 		if err!=nil{
 			api.ErrResponse(w, 500, err, "")
 			return 

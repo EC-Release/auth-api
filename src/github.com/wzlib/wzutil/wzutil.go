@@ -27,7 +27,7 @@ import (
 	"reflect"
 	"math/rand"
 	"net/mail"
-	
+	"golang.org/x/crypto/pbkdf2"
 	"github.com/wzlib/wzschema"
 
 	"io/ioutil"
