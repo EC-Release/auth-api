@@ -14,8 +14,8 @@
 
 package wzapi
 import (
-	model "github.build.ge.com/212359746/wzschema"
-	util "github.build.ge.com/212359746/wzutil"
+	model "github.com/wzlib/wzschema"
+	util "github.com/wzlib/wzutil"
 	"net/http"
 	"encoding/json"
 	"fmt"

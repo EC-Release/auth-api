@@ -16,7 +16,7 @@ import (
 	"crypto/rsa"
 	"testing"
 
-	util "github.build.ge.com/212359746/wzutil"
+	util "github.com/wzlib/wzutil"
 )
 
 func Test_decrypt(t *testing.T) {

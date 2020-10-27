@@ -1,5 +1,5 @@
 #!/bin/bash
-LIBPKG=github.build.ge.com/212359746
+LIBPKG=github.com/wzlib
 ls -al && ls -al ${GOPATH}
 mkdir -p ${GOPATH}/src/${LIBPKG}
 cp -r src/${LIBPKG}/* ${GOPATH}/src/${LIBPKG}
