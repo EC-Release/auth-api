@@ -15,6 +15,7 @@ script:
    - ls -al && echo ${CI_PROJECT_DIR} && ls -al pkg
    - chmod 755 dind.sh
    - docker run --network host -v $(pwd):/build enterpriseconnect/build:v1beta
+   - CI_COMMIT_BRANCH=${TRAVIS_BRANCH} CI_DEFAULT_BRANCH=v1beta GITHUB_TKN=${GITHUB_TKN} CI_JOB_ID=${CI_JOB_ID} API_BUILD_REV=${TRAVIS_BUILD_NUMBER} python authapi-ci.py
 
 deploy:
   - provider: script
