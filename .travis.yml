@@ -19,15 +19,9 @@ script:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: >-
-      export CI_COMMIT_BRANCH=${TRAVIS_BRANCH}
-      export CI_DEFAULT_BRANCH=v1beta
-      export GITHUB_TKN=${GITHUB_TKN}
-      export CI_JOB_ID=${CI_JOB_ID}
-      export API_BUILD_REV=${TRAVIS_BUILD_NUMBER}
-      python authapi-ci.py
+    script: CI_COMMIT_BRANCH=${TRAVIS_BRANCH} CI_DEFAULT_BRANCH=v1beta GITHUB_TKN=${GITHUB_TKN} CI_JOB_ID=${CI_JOB_ID} API_BUILD_REV=${TRAVIS_BUILD_NUMBER} python authapi-ci.py
     on:
-      branch: v1beta
+      branch: v1beta_update
 
 notifications:  
   email:  
