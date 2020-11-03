@@ -18,12 +18,19 @@ BINARY="{}/{}/{}".format(SDK,DIST,ART)
 CKF = 'checksum.txt'
     
 
-CI_COMMIT_BRANCH=os.environ["CI_COMMIT_BRANCH"]
-CI_DEFAULT_BRANCH=os.environ["CI_DEFAULT_BRANCH"]
-CI_JOB_ID=os.environ["CI_JOB_ID"]
-GITHUB_TKN=os.environ["GITHUB_TKN"]
+# CI_COMMIT_BRANCH=os.environ["CI_COMMIT_BRANCH"]
+# CI_DEFAULT_BRANCH=os.environ["CI_DEFAULT_BRANCH"]
+# CI_JOB_ID=os.environ["CI_JOB_ID"]
+# GITHUB_TKN=os.environ["GITHUB_TKN"]
+# DEPLOY_BRANCH="v1beta"
+# API_BUILD_REV=os.environ["API_BUILD_REV"]
+
+CI_COMMIT_BRANCH=sys.argv[1]
+CI_DEFAULT_BRANCH=sys.argv[2]
+CI_JOB_ID=sys.argv[3]
+GITHUB_TKN=sys.argv[4]
 DEPLOY_BRANCH="v1beta"
-API_BUILD_REV=os.environ["API_BUILD_REV"]
+API_BUILD_REV=sys.argv[5]
 
 EC_TAG=""
 
