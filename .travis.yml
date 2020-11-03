@@ -14,15 +14,14 @@ script:
    - rm -Rf pkg && mv ${AGENT_LIB}/lib/go/pkg pkg
    - ls -al && echo ${CI_PROJECT_DIR} && ls -al pkg
    - chmod 755 dind.sh
-   - docker run --network host -v $(pwd):/build enterpriseconnect/build:v1beta
-   - python authapi-ci.py ${TRAVIS_BRANCH} v1beta ${TRAVIS_JOB_ID} ${GITHUB_TKN} ${TRAVIS_BUILD_NUMBER}
+   - docker run --network host -e CI_COMMIT_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH} -e API_BUILD_REV=${TRAVIS_BUILD_NUMBER} -e CI_DEFAULT_BRANCH=${TRAVIS_BRANCH} -e GITHUB_TKN=${GITHUB_TKN} -e CI_JOB_ID=${TRAVIS_JOB_ID} -v $(pwd):/build enterpriseconnect/build:v1beta
 
 deploy:
   - provider: script
     skip_cleanup: true
-    script: python authapi-ci.py ${TRAVIS_BRANCH} v1beta ${TRAVIS_JOB_ID} ${GITHUB_TKN} ${TRAVIS_BUILD_NUMBER}
+    script: - docker run --network host -e CI_COMMIT_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH} -e API_BUILD_REV=${TRAVIS_BUILD_NUMBER} -e CI_DEFAULT_BRANCH=${TRAVIS_BRANCH} -e GITHUB_TKN=${GITHUB_TKN} -e CI_JOB_ID=${TRAVIS_JOB_ID} -v $(pwd):/build enterpriseconnect/build:v1beta
     on:
-      branch: v1beta_update
+      branch: v1beta
 
 notifications:  
   email:  
