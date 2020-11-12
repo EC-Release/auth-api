@@ -46,7 +46,7 @@ const (
            ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  @Digital Connect 
 `
 	COPY_RIGHT = "Digital Connect,  @GE Corporate"
-	ISSUE_TRACKER = "https://github.com/Enterprise-connect/ec-x-sdk/issues"
+	ISSUE_TRACKER = "https://github.com/EC-Release/ec-sdk/issues"
 	TC_HEADER = "X-Thread-Connect"
 	XCALR_URL = "https://x-thread-connect.run.pcs.aws-usw02-dev.ice.predix.io"
 	EC_HTTP_HEADER = "ec-options"
