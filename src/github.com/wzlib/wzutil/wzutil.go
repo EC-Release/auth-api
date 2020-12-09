@@ -14,7 +14,7 @@
 
 package wzutil
 import (
-	"golang.org/x/crypto/pbkdf2"
+	// "golang.org/x/crypto/pbkdf2"
 	"github.com/pborman/uuid"
 	"io"
 	"math/big"
