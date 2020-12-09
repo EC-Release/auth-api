@@ -1,9 +1,6 @@
 language: minimal
-
-python:
-  - 3.6
   
-if: head_branch =~ ^v1beta_update$ OR branch = v1beta
+if: head_branch =~ ^v1_update$ OR branch = v1
 
 services:
   - docker 
@@ -14,20 +11,20 @@ script:
    - rm -Rf pkg && mv ${AGENT_LIB}/lib/go/pkg pkg
    - ls -al && echo ${CI_PROJECT_DIR} && ls -al pkg
    - chmod 755 dind.sh
-   - docker run --network host -v $(pwd):/build enterpriseconnect/build:v1beta
+   - docker run --network host -v $(pwd):/build enterpriseconnect/build:v1
 
 deploy:
   - provider: script
     skip_cleanup: true
-    script: >-
+    script: 
       export CI_COMMIT_BRANCH=${TRAVIS_BRANCH}
-      export CI_DEFAULT_BRANCH=v1beta
+      export CI_DEFAULT_BRANCH=v1
       export GITHUB_TKN=${GITHUB_TKN}
       export CI_JOB_ID=${CI_JOB_ID}
       export API_BUILD_REV=${TRAVIS_BUILD_NUMBER}
       python authapi-ci.py
     on:
-      branch: v1beta
+      branch: v1
 
 notifications:  
   email:  

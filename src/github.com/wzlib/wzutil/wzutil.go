@@ -14,6 +14,7 @@
 
 package wzutil
 import (
+	"golang.org/x/crypto/pbkdf2"
 	"github.com/pborman/uuid"
 	"io"
 	"math/big"
@@ -27,7 +28,7 @@ import (
 	"reflect"
 	"math/rand"
 	"net/mail"
-	"golang.org/x/crypto/pbkdf2"
+	
 	"github.com/wzlib/wzschema"
 
 	"io/ioutil"
