@@ -11,7 +11,7 @@ script:
    - rm -Rf pkg && mv ${AGENT_LIB}/lib/go/pkg pkg
    - ls -al && echo ${CI_PROJECT_DIR} && ls -al pkg
    - chmod 755 dind.sh
-   - docker run --network host -v $(pwd):/build enterpriseconnect/build:v1
+   - docker run --network host -v $(pwd):/build enterpriseconnect/build:v1beta
 
 deploy:
   - provider: script
