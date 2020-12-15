@@ -51,4 +51,5 @@ import (
 	"encoding/hex"
 	"crypto/sha256"
 	"crypto"
+	"regexp"
 )
